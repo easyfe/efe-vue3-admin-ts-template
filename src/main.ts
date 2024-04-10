@@ -17,8 +17,8 @@ import "@/packages/init/index";
 //引入全局自定义指令
 import directive from "@/resources/directive";
 //加载视频播放器
-import VuePlyr from "vue-plyr";
-import "vue-plyr/dist/vue-plyr.css";
+import VuePlyr from "@skjnldsv/vue-plyr";
+import "@skjnldsv/vue-plyr/dist/vue-plyr.css";
 
 declare global {
     interface Window {
