@@ -17,6 +17,7 @@ import sleep from "@/utils/tools/sleep";
 import { Message } from "@arco-design/web-vue";
 import { getDefaultRoute } from "@/packages/vue-router";
 import global from "@/config/pinia/global";
+import { initGlobal } from "@/views/utils/index";
 const router = useRouter();
 
 // 清空本地存储
@@ -55,6 +56,7 @@ const handleSubmit = async (): Promise<any> => {
     if (v) return;
     loading.value = true;
     await sleep(3000);
+    await initGlobal();
     Message.success("登录成功");
     loading.value = false;
     router.replace(getDefaultRoute() || { path: "/" });
