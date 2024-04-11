@@ -1,16 +1,5 @@
 <template>
-    <div class="app-header">
-        <div class="left-side">
-            <a-breadcrumb>
-                <a-breadcrumb-item v-for="(item, index) in breadList" :key="item.name">
-                    <div class="bre-item">
-                        <Svg v-if="item.meta?.icon" :name="String(item.meta.icon)" :width="20" :height="20"></Svg>
-                        <div v-if="checkDidsable(item, index)">{{ $t(item.meta.title) }}</div>
-                        <a-link v-else @click="onClick(item)"> {{ $t(item.meta.title) }}</a-link>
-                    </div>
-                </a-breadcrumb-item>
-            </a-breadcrumb>
-        </div>
+    <div class="app-header-right">
         <div class="right-side">
             <div class="side-item">
                 <a-dropdown @select="changeLocale">
@@ -86,7 +75,7 @@
         </div>
     </div>
 </template>
-<script lang="ts" setup name="AppHeader">
+<script lang="ts" setup name="AppHeaderRight">
 import { RouteLocationMatched } from "vue-router";
 import { ArcoModalFormShow, Svg, formHelper } from "@easyfe/admin-component";
 import { LOCALE_OPTIONS } from "@/locales";
@@ -95,12 +84,15 @@ import { Modal } from "@arco-design/web-vue";
 import storage from "@/utils/tools/storage";
 import { useTheme } from "@/hooks/useTheme";
 import { getRouteParent } from "@/packages/vue-router/index";
+import global from "@/config/pinia/global";
 
 const { themeModeOptions, currentThemeMode, handleThemeChange } = useTheme();
 
 const { changeLocale, currentLocale } = useLocale();
 
 const router = useRouter();
+
+// const userInfo = computed(() => global().userInfo);
 
 const skinList = [
     { name: "arcoblue", color: "#165dff" },
@@ -151,6 +143,7 @@ function logout() {
         title: "提示",
         content: "确定退出登录吗？",
         onOk: () => {
+            global().initSuccess = false;
             storage.setToken("");
             router.replace({
                 path: "/login"
@@ -179,7 +172,7 @@ function changepassword() {
 }
 </script>
 <style lang="scss" scoped>
-.app-header {
+.app-header-right {
     display: flex;
     align-items: center;
     justify-content: space-between;

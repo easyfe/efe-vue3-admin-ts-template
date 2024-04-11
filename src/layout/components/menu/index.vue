@@ -1,17 +1,26 @@
 <template>
-    <a-menu v-model:open-keys="openKeys" v-model:selected-keys="selectedKeys" class="app-menu">
-        <menu-item v-for="item in routeList" :key="item.path" :route="item" />
+    <a-menu v-model:open-keys="openKeys" v-model:selected-keys="selectedKeys" class="app-menu" :mode="props.mode">
+        <template v-for="item in props.routeList" :key="item.path">
+            <menu-item :route="item" />
+        </template>
     </a-menu>
 </template>
-<script lang="ts" setup name="AppLeft">
-import routes from "@/config/pinia/routes";
+<script lang="ts" setup name="Menu">
 import MenuItem from "./menu-item.vue";
 import { getRouteParent } from "@/packages/vue-router";
-const route = useRoute();
+import { RouteConfig } from "types";
 
-const routeList = computed(() => {
-    return routes().routes;
-});
+const props = withDefaults(
+    defineProps<{
+        routeList: RouteConfig[];
+        mode?: "vertical" | "horizontal";
+    }>(),
+    {
+        mode: "vertical"
+    }
+);
+
+const route = useRoute();
 
 const openKeys = ref<string[]>([]);
 const selectedKeys = ref<string[]>([]);

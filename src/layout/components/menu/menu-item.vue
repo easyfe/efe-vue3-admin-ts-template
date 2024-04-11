@@ -1,15 +1,17 @@
 <template>
     <template v-if="checkVisible()">
-        <a-sub-menu v-if="showSubMenu()" :key="props.route.path">
+        <a-sub-menu v-if="showSubMenu()" :key="props.route.path" v-bind="$attrs">
             <template #icon>
                 <Svg v-if="route.meta && route.meta.icon" :name="route.meta.icon" :width="20" :height="20"></Svg>
             </template>
             <template #title>
                 <span>{{ route.meta?.title && $t(route.meta?.title) }}</span>
             </template>
-            <menu-item v-for="child in route.children" :key="child.path" :route="child" />
+            <template v-for="child in route.children" :key="child.path">
+                <menu-item :route="child" />
+            </template>
         </a-sub-menu>
-        <a-menu-item v-if="!showSubMenu()" :key="props.route.path" @click="onJump">
+        <a-menu-item v-if="!showSubMenu()" :key="props.route.path" v-bind="$attrs" @click="onJump">
             <template #icon>
                 <Svg v-if="route.meta && route.meta.icon" :name="route.meta.icon" :width="20" :height="20"></Svg>
             </template>
@@ -64,6 +66,10 @@ function checkVisible() {
 }
 
 function onJump() {
-    router.push(props.route);
+    if (props.route.redirect) {
+        router.push(props.route.redirect);
+    } else {
+        router.push(props.route);
+    }
 }
 </script>
