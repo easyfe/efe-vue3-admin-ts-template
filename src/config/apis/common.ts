@@ -64,3 +64,32 @@ export function uploadFile(option: RequestOption): any {
         xhr.send(formData);
     });
 }
+
+export function uploadFileNew(option: RequestOption): any {
+    return new Promise((resolve, reject) => {
+        const { onProgress, onError, onSuccess, fileItem } = option;
+        const data = new FormData();
+        //这里需要注意，后端接文件的name是什么，一般是image、file
+        data.append("file", fileItem.file as any);
+        request({
+            url: "https://www.uhsea.com/Frontend/upload",
+            method: "POST",
+            headers: { "Content-Type": "multipart/form-data" },
+            enableCancel: false,
+            timeout: 0,
+            data,
+            onUploadProgress: (progressEvent) => {
+                onProgress(progressEvent.loaded / progressEvent.total, progressEvent);
+            }
+        })
+            .then((res) => {
+                fileItem.url = res.data;
+                onSuccess(res);
+                resolve(res);
+            })
+            .catch((err) => {
+                onError(err);
+                reject(err);
+            });
+    });
+}
