@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@arco-design/web-vue':
-    specifier: ~2.54.6
-    version: 2.54.6(vue@3.3.4)
+    specifier: latest
+    version: 2.55.1(vue@3.3.4)
   '@easyfe/admin-component':
-    specifier: ^0.4.2
-    version: 0.4.2(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(vue-types@4.2.1)
+    specifier: ^0.4.9
+    version: 0.4.9(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(vue-types@4.2.1)
   '@easyfe/web-request':
     specifier: ^1.0.1
     version: 1.0.1
@@ -114,7 +114,7 @@ devDependencies:
     version: 1.4.5
   '@arco-themes/vue-easyfe':
     specifier: ~0.0.5
-    version: 0.0.5(@arco-design/web-vue@2.54.6)
+    version: 0.0.5(@arco-design/web-vue@2.55.1)
   '@commitlint/cli':
     specifier: ~17.6.6
     version: 17.6.6
@@ -243,8 +243,8 @@ packages:
     dependencies:
       color: 3.2.1
 
-  /@arco-design/web-vue@2.54.6(vue@3.3.4):
-    resolution: {integrity: sha512-Qx+HHL5G5gIvrbxGC6ZF/L8ACD1L/RkPJd9e4SR+vI6lEg+nGlUBplkR4pY7e7mqYXY2H6uzh+radT+QxXKVRg==}
+  /@arco-design/web-vue@2.55.1(vue@3.3.4):
+    resolution: {integrity: sha512-MI0mteI4B1+UAKAslCrV2zqRKHWwkjLjdOpOLAR36cAbYhtlj7Tel3yAjGHk5zsQ1ODZX60OFfRfl66pq6919A==}
     peerDependencies:
       vue: ^3.1.0
     dependencies:
@@ -271,12 +271,12 @@ packages:
       - supports-color
     dev: true
 
-  /@arco-themes/vue-easyfe@0.0.5(@arco-design/web-vue@2.54.6):
+  /@arco-themes/vue-easyfe@0.0.5(@arco-design/web-vue@2.55.1):
     resolution: {integrity: sha512-s8GM6PaatoW3EH6bMxtqqqRS9XdBgh8ERPRaMSRKHjNiIJDCG5L+oYKpj7orAPGrZR2guuyxOLWVHgV49pfGaA==}
     peerDependencies:
       '@arco-design/web-vue': ^2.45.1
     dependencies:
-      '@arco-design/web-vue': 2.54.6(vue@3.3.4)
+      '@arco-design/web-vue': 2.55.1(vue@3.3.4)
     dev: true
 
   /@babel/code-frame@7.12.11:
@@ -569,10 +569,10 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  /@easyfe/admin-component@0.4.2(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(vue-types@4.2.1):
-    resolution: {integrity: sha512-4pBDd4UxklDo94eUEfUzDNVx7scYVjPe1qhQaqYPp8f+rkMmiSGvaOHyiD8XWLey4NR4cYt87JCLhXhY/M1BTA==}
+  /@easyfe/admin-component@0.4.9(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(vue-types@4.2.1):
+    resolution: {integrity: sha512-IGq2Qdj2ZqlD4btlDvYjobFAFDOabh4+YZ1VjUuuW9DJBrpA/YwxcAh3ti9EfEncxAgqqC8j80H0m1G8BvIV9g==}
     dependencies:
-      '@arco-design/web-vue': 2.54.6(vue@3.3.4)
+      '@arco-design/web-vue': 2.55.1(vue@3.3.4)
       '@tinymce/tinymce-vue': 5.1.0(vue@3.3.4)
       dayjs: 1.11.9
       hex-to-css-filter: 5.4.0

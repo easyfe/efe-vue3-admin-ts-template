@@ -12,8 +12,8 @@
         "prepare": "husky install"
     },
     "dependencies": {
-        "@arco-design/web-vue": "~2.54.6",
-        "@easyfe/admin-component": "^0.4.2",
+        "@arco-design/web-vue": "latest",
+        "@easyfe/admin-component": "^0.4.9",
         "@easyfe/web-request": "^1.0.1",
         "@skjnldsv/vue-plyr": "^7.4.0",
         "@types/dush": "~3.0.1",
