@@ -42,7 +42,7 @@ export function createVitePlugins(params: {
          */
         VueSetupExtend(),
         vitePluginForArco({
-            theme: "@arco-themes/vue-easyfe"
+            // theme: "@arco-themes/vue-easyfe"
         })
     ];
     // 上传oss

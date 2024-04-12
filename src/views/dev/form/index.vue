@@ -1,6 +1,10 @@
 <template>
     <frame-view>
-        <arco-form ref="form" v-model="formData" :config="formConfig"></arco-form>
+        <arco-form ref="form" v-model="formData" :config="formConfig">
+            <template #s1>
+                <a-form-item label="插槽"> 这是自定义插槽 {{ formData }}</a-form-item>
+            </template>
+        </arco-form>
         <template #bottom>
             <a-button type="primary" @click="save">保存</a-button>
         </template>
@@ -10,13 +14,14 @@
 import { ArcoForm, formHelper, ruleHelper } from "@easyfe/admin-component";
 import { Message } from "@arco-design/web-vue";
 import { useTheme } from "@/hooks/useTheme";
-import { uploadFile } from "@/config/apis/common";
+import { uploadFileNew } from "@/config/apis/common";
 
 const { currentTheme } = useTheme();
 
 const formConfig = computed(() => {
     return [
         formHelper.section("基础信息"),
+        formHelper.slot("s1"),
         formHelper.span("介绍", "text"),
         formHelper.input("文本", "key1", {
             maxLength: 20,
@@ -25,7 +30,9 @@ const formConfig = computed(() => {
             labelTips: `提示内容第一点`,
             inputTips: `示文案这是示文案是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案`
         }),
-        formHelper.color("颜色", "key8"),
+        formHelper.color("颜色", "key8", {
+            defaultColor: "#000"
+        }),
         formHelper.checkbox(
             "多选框",
             "key2",
@@ -54,9 +61,9 @@ const formConfig = computed(() => {
                 ]
             }
         ),
-        formHelper.upload("图片", "key12", {
+        formHelper.picUpload("图片", "key12", {
             inputTips: "推荐使用400*400的图片",
-            customRequest: uploadFile
+            customRequest: uploadFileNew
         }),
         formHelper.radio(
             "单选框",
@@ -90,7 +97,7 @@ const formConfig = computed(() => {
         formHelper.editor("富文本", "key6", {
             theme: currentTheme.value,
             uploadProps: {
-                customRequest: uploadFile
+                customRequest: uploadFileNew
             }
         })
     ];

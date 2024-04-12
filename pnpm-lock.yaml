@@ -6,14 +6,17 @@ settings:
 
 dependencies:
   '@arco-design/web-vue':
-    specifier: ~2.54.6
-    version: 2.54.6(vue@3.3.4)
+    specifier: latest
+    version: 2.55.1(vue@3.3.4)
   '@easyfe/admin-component':
-    specifier: ^0.4.2
-    version: 0.4.2(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(vue-types@4.2.1)
+    specifier: ^0.4.9
+    version: 0.4.9(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(vue-types@4.2.1)
   '@easyfe/web-request':
     specifier: ^1.0.1
     version: 1.0.1
+  '@skjnldsv/vue-plyr':
+    specifier: ^7.4.0
+    version: 7.4.0
   '@types/dush':
     specifier: ~3.0.1
     version: 3.0.1
@@ -98,9 +101,6 @@ dependencies:
   vue-i18n:
     specifier: ^9.7.0
     version: 9.7.0(vue@3.3.4)
-  vue-plyr:
-    specifier: ~7.0.0
-    version: 7.0.0
   vue-router:
     specifier: ~4.2.2
     version: 4.2.2(vue@3.3.4)
@@ -114,7 +114,7 @@ devDependencies:
     version: 1.4.5
   '@arco-themes/vue-easyfe':
     specifier: ~0.0.5
-    version: 0.0.5(@arco-design/web-vue@2.54.6)
+    version: 0.0.5(@arco-design/web-vue@2.55.1)
   '@commitlint/cli':
     specifier: ~17.6.6
     version: 17.6.6
@@ -243,8 +243,8 @@ packages:
     dependencies:
       color: 3.2.1
 
-  /@arco-design/web-vue@2.54.6(vue@3.3.4):
-    resolution: {integrity: sha512-Qx+HHL5G5gIvrbxGC6ZF/L8ACD1L/RkPJd9e4SR+vI6lEg+nGlUBplkR4pY7e7mqYXY2H6uzh+radT+QxXKVRg==}
+  /@arco-design/web-vue@2.55.1(vue@3.3.4):
+    resolution: {integrity: sha512-MI0mteI4B1+UAKAslCrV2zqRKHWwkjLjdOpOLAR36cAbYhtlj7Tel3yAjGHk5zsQ1ODZX60OFfRfl66pq6919A==}
     peerDependencies:
       vue: ^3.1.0
     dependencies:
@@ -271,12 +271,12 @@ packages:
       - supports-color
     dev: true
 
-  /@arco-themes/vue-easyfe@0.0.5(@arco-design/web-vue@2.54.6):
+  /@arco-themes/vue-easyfe@0.0.5(@arco-design/web-vue@2.55.1):
     resolution: {integrity: sha512-s8GM6PaatoW3EH6bMxtqqqRS9XdBgh8ERPRaMSRKHjNiIJDCG5L+oYKpj7orAPGrZR2guuyxOLWVHgV49pfGaA==}
     peerDependencies:
       '@arco-design/web-vue': ^2.45.1
     dependencies:
-      '@arco-design/web-vue': 2.54.6(vue@3.3.4)
+      '@arco-design/web-vue': 2.55.1(vue@3.3.4)
     dev: true
 
   /@babel/code-frame@7.12.11:
@@ -569,10 +569,10 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  /@easyfe/admin-component@0.4.2(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(vue-types@4.2.1):
-    resolution: {integrity: sha512-4pBDd4UxklDo94eUEfUzDNVx7scYVjPe1qhQaqYPp8f+rkMmiSGvaOHyiD8XWLey4NR4cYt87JCLhXhY/M1BTA==}
+  /@easyfe/admin-component@0.4.9(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(vue-types@4.2.1):
+    resolution: {integrity: sha512-IGq2Qdj2ZqlD4btlDvYjobFAFDOabh4+YZ1VjUuuW9DJBrpA/YwxcAh3ti9EfEncxAgqqC8j80H0m1G8BvIV9g==}
     dependencies:
-      '@arco-design/web-vue': 2.54.6(vue@3.3.4)
+      '@arco-design/web-vue': 2.55.1(vue@3.3.4)
       '@tinymce/tinymce-vue': 5.1.0(vue@3.3.4)
       dayjs: 1.11.9
       hex-to-css-filter: 5.4.0
@@ -1018,6 +1018,14 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /@skjnldsv/vue-plyr@7.4.0:
+    resolution: {integrity: sha512-BD1sQjSfpPAbd+TacxY6fVkoGuIAY0TFRh7gyIumyC2YdBCsjLlYBg3A8MzPHjUH6HuHpgS3AvBKjTZMRTXCbQ==}
+    engines: {node: ^18.0.0 || ^20.0.0, npm: ^9.0.0}
+    dependencies:
+      plyr: 3.7.8
+      vue: 3.3.4
+    dev: false
+
   /@syyfe/eslint-plugin@0.0.2(eslint@8.44.0):
     resolution: {integrity: sha512-aT68I1bPsUgvv+ztyz4Tb0AtaWwmthAEgZLsawhftY7MAazGDO9lAbog8//dPGQTTqKLHopLcgN1BhxNs782sw==}
     engines: {node: 12.x || 14.x || >= 16}
@@ -1258,14 +1266,6 @@ packages:
     dependencies:
       '@vue/compiler-core': 3.3.4
       '@vue/shared': 3.3.4
-
-  /@vue/compiler-sfc@2.7.14:
-    resolution: {integrity: sha512-aNmNHyLPsw+sVvlQFQ2/8sjNuLtK54TC6cuKnVzAY93ks4ZBrvwQSnkkIh7bsbNhum5hJBS00wSDipQ937f5DA==}
-    dependencies:
-      '@babel/parser': 7.22.6
-      postcss: 8.4.24
-      source-map: 0.6.1
-    dev: false
 
   /@vue/compiler-sfc@3.3.4:
     resolution: {integrity: sha512-6y/d8uw+5TkCuzBkgLS0v3lSM3hJDntFEiUORM11pQ/hKvkhSKZrXW6i69UyXlJQisJxuUEJKAWEqWbWsLeNKQ==}
@@ -2162,8 +2162,8 @@ packages:
     resolution: {integrity: sha512-3DdaFaU/Zf1AnpLiFDeNCD4TOWe3Zl2RZaTzUvWiIk5ERzcCodOE20Vqq4fzCbNoHURFHT4/us/Lfq+S2zyY4w==}
     dev: true
 
-  /core-js@3.31.0:
-    resolution: {integrity: sha512-NIp2TQSGfR6ba5aalZD+ZQ1fSxGhDo/s1w0nx3RYzf2pnJxt7YynxFlFScP6eV7+GZsKO95NSjGxyJsU3DZgeQ==}
+  /core-js@3.36.1:
+    resolution: {integrity: sha512-BTvUrwxVBezj5SZ3f10ImnX2oRByMxql3EimVqMysepbC9EeMUOpLwdy6Eoili2x6E4kf+ZUB5k/+Jv55alPfA==}
     requiresBuild: true
     dev: false
 
@@ -5262,6 +5262,16 @@ packages:
     resolution: {integrity: sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==}
     dev: true
 
+  /plyr@3.7.8:
+    resolution: {integrity: sha512-yG/EHDobwbB/uP+4Bm6eUpJ93f8xxHjjk2dYcD1Oqpe1EcuQl5tzzw9Oq+uVAzd2lkM11qZfydSiyIpiB8pgdA==}
+    dependencies:
+      core-js: 3.36.1
+      custom-event-polyfill: 1.0.7
+      loadjs: 4.2.0
+      rangetouch: 2.0.1
+      url-polyfill: 1.1.12
+    dev: false
+
   /pngjs@5.0.0:
     resolution: {integrity: sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==}
     engines: {node: '>=10.13.0'}
@@ -5986,6 +5996,7 @@ packages:
   /source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /source-map@0.7.4:
     resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
@@ -7023,13 +7034,6 @@ packages:
       vue: 3.3.4
     dev: false
 
-  /vue-plyr@7.0.0:
-    resolution: {integrity: sha512-NvbO/ZzV1IxlBQQbQlon5Sk8hKuGAj3k4k0XVdi7gM4oSqu8mZMhJ3WM3FfAtNfV790jbLnb8P3dHYqaBqIv6g==}
-    dependencies:
-      plyr: github.com/sampotts/plyr/d434c9af16e641400aaee93188594208d88f2658
-      vue: 2.7.14
-    dev: false
-
   /vue-router@4.2.2(vue@3.3.4):
     resolution: {integrity: sha512-cChBPPmAflgBGmy3tBsjeoe3f3VOSG6naKyY5pjtrqLGbNEXdzCigFUHgBvp9e3ysAtFtEx7OLqcSDh/1Cq2TQ==}
     peerDependencies:
@@ -7069,13 +7073,6 @@ packages:
       tinycolor2: 1.6.0
       vue: 3.3.4
       vue-types: 4.2.1(vue@3.3.4)
-    dev: false
-
-  /vue@2.7.14:
-    resolution: {integrity: sha512-b2qkFyOM0kwqWFuQmgd4o+uHGU7T+2z3T+WQp8UBjADfEv2n4FEMffzBmCKNP0IGzOEEfYjvtcC62xaSKeQDrQ==}
-    dependencies:
-      '@vue/compiler-sfc': 2.7.14
-      csstype: 3.1.2
     dev: false
 
   /vue@3.3.4:
@@ -7282,16 +7279,4 @@ packages:
     resolution: {integrity: sha512-O3MilSi/9mwoovx77m6ROZM7sXShR/O/JIanvzTwjN3FORfLSr81PsUGd7jlaYOeds9d8tw82oP44+3YucVo+w==}
     dependencies:
       tslib: 2.3.0
-    dev: false
-
-  github.com/sampotts/plyr/d434c9af16e641400aaee93188594208d88f2658:
-    resolution: {tarball: https://codeload.github.com/sampotts/plyr/tar.gz/d434c9af16e641400aaee93188594208d88f2658}
-    name: plyr
-    version: 3.7.0
-    dependencies:
-      core-js: 3.31.0
-      custom-event-polyfill: 1.0.7
-      loadjs: 4.2.0
-      rangetouch: 2.0.1
-      url-polyfill: 1.1.12
     dev: false

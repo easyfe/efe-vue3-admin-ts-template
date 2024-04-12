@@ -1,4 +1,4 @@
-const baseRouter = [
+export const baseRouter = [
     {
         path: "/:pathMatch(.*)*",
         name: "404",
@@ -19,5 +19,3 @@ const baseRouter = [
         component: (): any => import("@/views/login/index.vue")
     }
 ];
-
-export default baseRouter;
