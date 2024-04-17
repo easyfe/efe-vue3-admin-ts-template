@@ -9,7 +9,7 @@ dependencies:
     specifier: latest
     version: 2.55.1(vue@3.3.4)
   '@easyfe/admin-component':
-    specifier: ^0.4.10
+    specifier: latest
     version: 0.4.10(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(vue-types@4.2.1)
   '@easyfe/web-request':
     specifier: ^1.0.1
