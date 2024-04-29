@@ -1,5 +1,5 @@
 <template>
-    <div class="logo" :style="{ width: !collapsed ? '200px' : '' }" @click="toDefaultPage">
+    <div class="logo" :style="{ maxWidth: !collapsed ? '200px' : '' }" @click="toDefaultPage">
         <Svg name="vue" width="36" height="36"></Svg>
         <h2 v-show="!collapsed" class="title">Easyfe Admin</h2>
     </div>
