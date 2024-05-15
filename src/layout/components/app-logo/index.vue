@@ -27,6 +27,7 @@ function toDefaultPage() {
     height: 60px;
     cursor: pointer;
     user-select: none;
+    background-color: var(--color-menu-light-bg);
     img {
         width: 50%;
     }
