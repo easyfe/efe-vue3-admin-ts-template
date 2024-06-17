@@ -42,6 +42,9 @@ import AppTags from "../app-tags/index.vue";
         top: 0;
         width: 100%;
         z-index: 100;
+        border-bottom: 1px solid rgb(var(--gray-3));
+        box-shadow: 0 2px 8px 2px rgba(29, 33, 41, 0.02), 0 2px 4px rgba(29, 33, 41, 0.02),
+            0 1px 2px -2px rgba(29, 33, 41, 0.02);
         .app-header {
             height: 60px;
         }
