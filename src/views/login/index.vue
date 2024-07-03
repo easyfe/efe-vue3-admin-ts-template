@@ -10,20 +10,12 @@
 </template>
 <script setup lang="ts">
 // import { login, autoLogin } from "@/config/apis/login";
-import storage from "@/utils/tools/storage";
-import cookie from "@/utils/tools/cookie";
 import { ArcoForm, formHelper, ruleHelper } from "@easyfe/admin-component";
 import sleep from "@/utils/tools/sleep";
 import { Message } from "@arco-design/web-vue";
 import { getDefaultRoute } from "@/packages/vue-router";
-import global from "@/config/pinia/global";
-import { initGlobal } from "@/views/utils/index";
+import { initGlobal, clearLoingInfo } from "@/views/utils/index";
 const router = useRouter();
-
-// 清空本地存储
-storage.clear();
-cookie.set("X-Token", "");
-global().initSuccess = false;
 
 const loading = ref(false);
 
@@ -98,6 +90,10 @@ const handleSubmit = async (): Promise<any> => {
     //     }
     // }
 };
+
+onMounted(() => {
+    clearLoingInfo();
+});
 </script>
 
 <style scoped lang="scss">

@@ -1,6 +1,7 @@
 <template>
     <div :class="['frame-view', $slots.bottom ? 'frame-view-pdm' : '', props.fixedHeight ? 'frame-fixed-height' : '']">
         <div :class="['frame-view-content', props.contentClass]">
+            <a-page-header v-if="pageHeader" v-bind="pageHeader" @back="routerHelper.back()" />
             <slot></slot>
         </div>
         <div v-if="$slots.bottom" class="frame-view-bottom" :style="bottomStyle">
@@ -11,6 +12,8 @@
 
 <script lang="ts" setup name="FrameView">
 import global from "@/config/pinia/global";
+import routerHelper from "@/utils/helper/router";
+import { PageHeader } from "@arco-design/web-vue";
 
 const layoutModeHeight = computed(() => {
     const mode = global().app.layout;
@@ -25,10 +28,12 @@ const props = withDefaults(
     defineProps<{
         contentClass?: string;
         fixedHeight?: boolean;
+        pageHeader?: InstanceType<typeof PageHeader>["$props"];
     }>(),
     {
         contentClass: "",
-        fixedHeight: false
+        fixedHeight: false,
+        pageHeader: undefined
     }
 );
 

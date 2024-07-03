@@ -2,6 +2,21 @@ import storage from "@/utils/tools/storage";
 import { Modal } from "@arco-design/web-vue";
 import router, { initRoute } from "@/packages/vue-router";
 import global from "@/config/pinia/global";
+import CryptoJS from "crypto-js";
+
+export const TablePageConfig = {
+    pageKey: "current",
+    sizeKey: "size",
+    rowKey: "records",
+    totalKey: "total"
+};
+
+export function clearLoingInfo() {
+    storage.setToken("");
+    global().userInfo = null;
+    global().userMenu = [];
+    global().initSuccess = false;
+}
 
 let authModal = false;
 export function errorLogout() {
@@ -41,11 +56,15 @@ export function initGlobal() {
         //     errorLogout();
         //     return;
         // }
-        //TODO:获取用户权限信息，填充到permissions里面
-        // console.log("初始化全局数据", hasPermission("system:menu:edit"));
-        initRoute();
-        global().initSuccess = true;
-        resolve(true);
+        try {
+            //  global().userInfo = await getUserInfo();
+            //  global().userMenu = await getUserMenu();
+            initRoute();
+            global().initSuccess = true;
+            resolve(true);
+        } catch (err) {
+            reject(err);
+        }
     });
 }
 
@@ -102,4 +121,178 @@ export function recuFind(fn: (v: any) => boolean, sourceData: any[], childrenKey
         }
     };
     return loop(sourceData);
+}
+
+/**
+ * 加密
+ * @param pword
+ * @param pkeyStr
+ * @returns
+ */
+export function encrypt(pword: string, pkeyStr?: string) {
+    const keyStr = pkeyStr || "abcdefgabcdefg12";
+    const key = CryptoJS.enc.Utf8.parse(keyStr); // Latin1 w8m31+Yy/Nw6thPsMpO5fg==
+    const srcs = CryptoJS.enc.Utf8.parse(pword);
+    const encrypted = CryptoJS.AES.encrypt(srcs, key, { mode: CryptoJS.mode.ECB, padding: CryptoJS.pad.Pkcs7 });
+    return encrypted.toString();
+}
+
+/**
+ * 解密
+ * @param pword
+ * @param pkeyStr
+ * @returns
+ */
+export function decrypt(pword: string, pkeyStr?: string) {
+    const keyStr = pkeyStr || "abcdefgabcdefg12";
+    const key = CryptoJS.enc.Utf8.parse(keyStr); // Latin1 w8m31+Yy/Nw6thPsMpO5fg==
+    const decrypt = CryptoJS.AES.decrypt(pword, key, { mode: CryptoJS.mode.ECB, padding: CryptoJS.pad.Pkcs7 });
+    return CryptoJS.enc.Utf8.stringify(decrypt).toString();
+}
+
+/**
+ * 权限判断
+ * @param permission
+ * @returns
+ */
+export function hasPermission(permission: string) {
+    const permissions = global().userInfo?.permissions;
+    return permissions?.includes(permission);
+}
+
+/**
+ * 菜单判断
+ * @param menu
+ * @returns
+ */
+export function hasMenu(menu: string) {
+    const menus = global().userMenu;
+    const v = recuFind((item) => item.path === menu, menus);
+    return v || false;
+}
+
+/**
+ * 树状结构转数组
+ * @param tree - 树状结构的数组
+ * @param childrenKey - children 的键名
+ * @returns 数组
+ */
+export function treeToArray<T>(tree: T[], childrenKey: keyof T): Omit<T, keyof T>[] {
+    return tree.reduce((res, item) => {
+        const { [childrenKey]: children, ...i } = item;
+        return res.concat(
+            i,
+            children && (children as unknown as T[]).length ? treeToArray(children as unknown as T[], childrenKey) : []
+        );
+    }, [] as Omit<T, keyof T>[]);
+}
+
+/**
+ * 数组转树状结构
+ * @param items - 数组
+ * @param idKey - id 的键名
+ * @param parentIdKey - parentId 的键名
+ * @param childrenKey - children 的键名
+ * @returns 树状结构的数组
+ */
+export function arrayToTree<T>(
+    items: T[],
+    idKey: keyof T,
+    parentIdKey: keyof T,
+    childrenKey: string
+): (T & { [key: string]: any[] })[] {
+    const res: (T & { [key: string]: any[] })[] = []; // 存放结果集
+    const map: { [key: string]: T & { [key: string]: any[] } } = {};
+
+    // 判断对象是否有某个属性
+    const getHasOwnProperty = (obj: any, property: any) => Object.prototype.hasOwnProperty.call(obj, property);
+
+    // 边做map存储，边找对应关系
+    for (const item of items) {
+        const id = item[idKey] as unknown as string;
+        const pid = item[parentIdKey] as unknown as string;
+
+        map[id] = {
+            ...item,
+            [childrenKey]: getHasOwnProperty(map, id) ? map[id][childrenKey] : []
+        };
+
+        const newItem = map[id];
+
+        if (pid === "0") {
+            res.push(newItem);
+        } else {
+            if (!getHasOwnProperty(map, pid)) {
+                map[pid] = {
+                    [childrenKey]: []
+                } as T & { [key: string]: any[] };
+            }
+            map[pid][childrenKey].push(newItem);
+        }
+    }
+    return res;
+}
+
+type Data = {
+    id: string;
+    parentId: string;
+    weight: number;
+    name: string;
+    path: string;
+    meta: Record<string, any>;
+    sortOrder: number;
+    menuType: string;
+    permission: string;
+    children?: Data[];
+};
+
+/**
+ * 拆分选择
+ * @param data
+ * @param selectedIds
+ * @returns
+ */
+export function splitSelection(
+    data: Data[],
+    selectedIds: string[]
+): { fullySelected: string[]; partiallySelected: string[] } {
+    const fullySelected: string[] = [];
+    const partiallySelected: string[] = [];
+
+    function traverse(node: Data): { isFullySelected: boolean; isPartiallySelected: boolean } {
+        let isFullySelected = selectedIds.includes(node.id);
+        let isPartiallySelected = false;
+
+        if (node.children) {
+            let childFullySelectedCount = 0;
+            let childPartiallySelectedCount = 0;
+
+            for (const child of node.children) {
+                const { isFullySelected: childFully, isPartiallySelected: childPartial } = traverse(child);
+                if (childFully) childFullySelectedCount++;
+                if (childPartial) childPartiallySelectedCount++;
+            }
+
+            if (childFullySelectedCount === node.children.length && childFullySelectedCount > 0) {
+                isFullySelected = true;
+            } else if (childFullySelectedCount > 0 || childPartiallySelectedCount > 0) {
+                isPartiallySelected = true;
+                isFullySelected = false; // 防止节点被错误地标记为完全选中
+            }
+        }
+
+        if (isFullySelected) {
+            fullySelected.push(node.id);
+        } else if (isPartiallySelected || selectedIds.includes(node.id)) {
+            partiallySelected.push(node.id);
+        }
+
+        return { isFullySelected, isPartiallySelected };
+    }
+
+    for (const item of data) {
+        traverse(item);
+    }
+
+    return { fullySelected, partiallySelected };
 }

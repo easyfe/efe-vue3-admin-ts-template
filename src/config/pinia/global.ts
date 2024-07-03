@@ -7,6 +7,8 @@ export default defineStore({
         app: {
             layout: <"left" | "top" | "mix">"left"
         },
+        userInfo: <Record<string, any> | null>null,
+        userMenu: [],
         //是否收起菜单
         collapsed: false,
         initSuccess: false

@@ -7,10 +7,10 @@ settings:
 dependencies:
   '@arco-design/web-vue':
     specifier: latest
-    version: 2.55.1(vue@3.4.27)
+    version: 2.55.3(vue@3.4.27)
   '@easyfe/admin-component':
     specifier: latest
-    version: 0.4.10(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(typescript@4.5.2)(vue-types@4.2.1)
+    version: 0.4.15(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(typescript@4.5.2)(vue-types@4.2.1)
   '@easyfe/web-request':
     specifier: ^1.0.1
     version: 1.0.1
@@ -32,6 +32,9 @@ dependencies:
   cos-js-sdk-v5:
     specifier: ~1.4.18
     version: 1.4.18
+  crypto-js:
+    specifier: ^4.2.0
+    version: 4.2.0
   custom-vue-scrollbar:
     specifier: ~0.0.7
     version: 0.0.7(lodash-es@4.17.21)(vue@3.4.27)
@@ -114,7 +117,7 @@ devDependencies:
     version: 1.4.5
   '@arco-themes/vue-easyfe':
     specifier: ~0.0.5
-    version: 0.0.5(@arco-design/web-vue@2.55.1)
+    version: 0.0.5(@arco-design/web-vue@2.55.3)
   '@commitlint/cli':
     specifier: ~17.6.6
     version: 17.6.6
@@ -133,6 +136,9 @@ devDependencies:
   '@types/big.js':
     specifier: ~6.1.6
     version: 6.1.6
+  '@types/crypto-js':
+    specifier: ^4.2.2
+    version: 4.2.2
   '@types/intro.js':
     specifier: ~5.1.1
     version: 5.1.1
@@ -243,8 +249,8 @@ packages:
     dependencies:
       color: 3.2.1
 
-  /@arco-design/web-vue@2.55.1(vue@3.4.27):
-    resolution: {integrity: sha512-MI0mteI4B1+UAKAslCrV2zqRKHWwkjLjdOpOLAR36cAbYhtlj7Tel3yAjGHk5zsQ1ODZX60OFfRfl66pq6919A==}
+  /@arco-design/web-vue@2.55.3(vue@3.4.27):
+    resolution: {integrity: sha512-gOyEPD0XdaeGIOD7+dypY7+vCE18Y2cG+6R1e56oNGPTk3q+Wj1X6iMpBXVAGiKykvH3BpsCEBFxMtJmKXCR5A==}
     peerDependencies:
       vue: ^3.1.0
     dependencies:
@@ -271,12 +277,12 @@ packages:
       - supports-color
     dev: true
 
-  /@arco-themes/vue-easyfe@0.0.5(@arco-design/web-vue@2.55.1):
+  /@arco-themes/vue-easyfe@0.0.5(@arco-design/web-vue@2.55.3):
     resolution: {integrity: sha512-s8GM6PaatoW3EH6bMxtqqqRS9XdBgh8ERPRaMSRKHjNiIJDCG5L+oYKpj7orAPGrZR2guuyxOLWVHgV49pfGaA==}
     peerDependencies:
       '@arco-design/web-vue': ^2.45.1
     dependencies:
-      '@arco-design/web-vue': 2.55.1(vue@3.4.27)
+      '@arco-design/web-vue': 2.55.3(vue@3.4.27)
     dev: true
 
   /@babel/code-frame@7.12.11:
@@ -577,10 +583,10 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  /@easyfe/admin-component@0.4.10(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(typescript@4.5.2)(vue-types@4.2.1):
-    resolution: {integrity: sha512-TJlnZH5LUQusDUqE5ER5TFNSTky6pRP9dQJ1s5Jo9xC5qnZpzIUHXmxriscrzdW0ToXKqWK1deEDy2DYfhlq4w==}
+  /@easyfe/admin-component@0.4.15(@aesoper/normal-utils@0.1.5)(@popperjs/core@2.11.8)(@vueuse/core@10.2.1)(gradient-parser@1.0.2)(tinycolor2@1.6.0)(typescript@4.5.2)(vue-types@4.2.1):
+    resolution: {integrity: sha512-p4MgDBYddL12VjMR9n4Xl9pJk7SAIQMYAhwwpOPwNnrTZWPjgz693Q3RYrB1r4ljpqXju6/r9d7jblfGn+8YQQ==}
     dependencies:
-      '@arco-design/web-vue': 2.55.1(vue@3.4.27)
+      '@arco-design/web-vue': 2.55.3(vue@3.4.27)
       '@tinymce/tinymce-vue': 5.1.0(vue@3.4.27)
       dayjs: 1.11.9
       hex-to-css-filter: 5.4.0
@@ -897,6 +903,7 @@ packages:
   /@humanwhocodes/config-array@0.11.10:
     resolution: {integrity: sha512-KVVjQmNUepDVGXNuoRRdmmEjruj0KfiGSbS8LVc12LMsWDQzRXJ0qdhN8L8uUigKpfEHRhlaQFY0ib1tnUbNeQ==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
     dependencies:
       '@humanwhocodes/object-schema': 1.2.1
       debug: 4.3.4
@@ -1075,6 +1082,10 @@ packages:
 
   /@types/big.js@6.1.6:
     resolution: {integrity: sha512-0r9J+Zz9rYm2hOTwiMAVkm3XFQ4u5uTK37xrQMhc9bysn/sf/okzovWMYYIBMFTn/yrEZ11pusgLEaoarTlQbA==}
+    dev: true
+
+  /@types/crypto-js@4.2.2:
+    resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==}
     dev: true
 
   /@types/dush@3.0.1:
@@ -2293,6 +2304,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    dev: false
 
   /css-line-break@2.1.0:
     resolution: {integrity: sha512-FHcKFCZcAha3LwfVBhCQbW2nCNbkZXn7KVUJcsT5/P8YmfsVja0FMPJr0B903j/E69HUphKiV9iQArX8SDYA4w==}
