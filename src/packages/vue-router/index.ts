@@ -170,6 +170,8 @@ router.beforeEach(async (to: RouteConfig, from, next) => {
     //     next({ ...to, replace: true });
     //     return;
     // }
+    // console.log("路由前置守卫：", to, from);
+    document.title = <string>to.meta?.title || "";
     if (to.name === "login") {
         next();
         return;
@@ -185,8 +187,7 @@ router.beforeEach(async (to: RouteConfig, from, next) => {
         }
         return;
     }
-    // console.log("路由前置守卫：", to, from);
-    document.title = <string>to.meta?.title || "";
+
     start = new Date().getTime();
     /** 资源没有加载完成的时候，给loading，为防止资源已加载完毕，加上延迟避免闪屏 */
     timer = window.setTimeout(() => {
