@@ -1,13 +1,11 @@
 <template>
-    <frame-view>
-        <div class="empty">
-            <img :src="emptyImage" />
-            <a-space>
-                <!-- <a-button type="primary" @click="handleBack">返回上一页</a-button> -->
-                <a-button @click="handleRetry">返回首页</a-button>
-            </a-space>
-        </div>
-    </frame-view>
+    <div class="empty">
+        <img :src="emptyImage" />
+        <a-space>
+            <!-- <a-button type="primary" @click="handleBack">返回上一页</a-button> -->
+            <a-button @click="handleRetry">返回首页</a-button>
+        </a-space>
+    </div>
 </template>
 
 <script setup lang="ts">
