@@ -12,7 +12,7 @@
         "allowSyntheticDefaultImports": true,
         "sourceMap": true,
         "baseUrl": ".",
-        "types": ["vite/client"],
+        "types": ["vite/client", "./types/amap.d.ts"],
         "paths": {
             "@/*": ["src/*"]
         },

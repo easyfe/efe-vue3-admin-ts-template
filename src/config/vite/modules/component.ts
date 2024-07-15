@@ -20,6 +20,6 @@ export const AutoRegistryComponents = (): Plugin => {
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
         exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
         // 解析的 UI 组件库
-        resolvers: [ArcoResolver({ sideEffect: true, resolveIcons: true })]
+        resolvers: [ArcoResolver({ sideEffect: true, resolveIcons: true, exclude: ["AMap"] })]
     });
 };

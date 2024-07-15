@@ -12,6 +12,7 @@
         "prepare": "husky install"
     },
     "dependencies": {
+        "@amap/amap-jsapi-loader": "^1.0.1",
         "@arco-design/web-vue": "latest",
         "@easyfe/admin-component": "latest",
         "@easyfe/web-request": "^1.0.1",
@@ -49,6 +50,7 @@
         "vuedraggable": "~4.1.0"
     },
     "devDependencies": {
+        "@amap/amap-jsapi-types": "^0.0.15",
         "@arco-plugins/vite-vue": "~1.4.5",
         "@arco-themes/vue-easyfe": "~0.0.5",
         "@commitlint/cli": "~17.6.6",

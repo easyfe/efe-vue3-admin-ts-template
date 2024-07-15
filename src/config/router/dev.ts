@@ -119,6 +119,15 @@ const routers: RouteConfig[] = [
                     sort: 4
                 },
                 component: () => import("@/views/dev/new-drag/index.vue")
+            },
+            {
+                path: "/dev/amap",
+                name: "dev-amap",
+                meta: {
+                    title: "高德地图",
+                    sort: 4
+                },
+                component: () => import("@/views/dev/amap/index.vue")
             }
         ]
     }
