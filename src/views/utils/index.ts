@@ -75,19 +75,19 @@ export function initGlobal() {
  * @param childrenKey
  * @returns
  */
-export function recuTree(fn: (v: any) => boolean, sourceData: any[], childrenKey = "children") {
-    const loop = (data: any[]) => {
-        const result: any[] = [];
+export function recuTree<T>(fn: (v: T) => boolean, sourceData: T[], childrenKey: keyof T = "children" as keyof T): T[] {
+    const loop = (data: T[]): T[] => {
+        const result: T[] = [];
         data.forEach((item) => {
             if (fn(item)) {
                 result.push({ ...item });
-            } else if (item[childrenKey]) {
-                const filterData = loop(item[childrenKey]);
+            } else if (item[childrenKey] && Array.isArray(item[childrenKey])) {
+                const filterData = loop(item[childrenKey] as unknown as T[]);
                 if (filterData.length) {
                     const tmp = {
-                        ...item
+                        ...item,
+                        [childrenKey]: filterData
                     };
-                    tmp[childrenKey] = filterData;
                     result.push(tmp);
                 }
             }
@@ -104,21 +104,24 @@ export function recuTree(fn: (v: any) => boolean, sourceData: any[], childrenKey
  * @param childrenKey
  * @returns
  */
-export function recuFind(fn: (v: any) => boolean, sourceData: any[], childrenKey = "children") {
-    const loop = (data: any[]) => {
+export function recuFind<T>(
+    fn: (v: T) => boolean,
+    sourceData: T[],
+    childrenKey: keyof T = "children" as keyof T
+): T | undefined {
+    const loop = (data: T[]): T | undefined => {
         for (let i = 0; i < data.length; i++) {
             const item = data[i];
             if (fn(item)) {
                 return item;
-            } else {
-                if (item[childrenKey]) {
-                    const tmp: any = loop(item[childrenKey]);
-                    if (tmp) {
-                        return tmp;
-                    }
+            } else if (item[childrenKey] && Array.isArray(item[childrenKey])) {
+                const tmp = loop(item[childrenKey] as unknown as T[]);
+                if (tmp) {
+                    return tmp;
                 }
             }
         }
+        return undefined;
     };
     return loop(sourceData);
 }
