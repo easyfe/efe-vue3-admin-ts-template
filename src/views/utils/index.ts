@@ -76,6 +76,7 @@ export function initGlobal() {
  * @returns
  */
 export function recuTree<T>(fn: (v: T) => boolean, sourceData: T[], childrenKey: keyof T = "children" as keyof T): T[] {
+    if (!sourceData) return [];
     const loop = (data: T[]): T[] => {
         const result: T[] = [];
         data.forEach((item) => {
@@ -109,6 +110,7 @@ export function recuFind<T>(
     sourceData: T[],
     childrenKey: keyof T = "children" as keyof T
 ): T | undefined {
+    if (!sourceData) return undefined;
     const loop = (data: T[]): T | undefined => {
         for (let i = 0; i < data.length; i++) {
             const item = data[i];
