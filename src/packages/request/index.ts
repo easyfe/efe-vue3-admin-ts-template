@@ -18,6 +18,9 @@ const service = new WebRequest({
                     _t: nanoid()
                 };
             }
+            if (config.url?.includes("/version.json")) {
+                return Promise.resolve(config);
+            }
             return Promise.resolve(config);
         },
         response: (response): Promise<any> => {

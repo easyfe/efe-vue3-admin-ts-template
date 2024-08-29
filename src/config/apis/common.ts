@@ -9,9 +9,17 @@ export function testList(params: Record<string, any>): Promise<{ title: string }
     });
 }
 
+/**
+ * 获取版本号
+ * @returns
+ */
 export function getVersion(): Promise<{ version: string }> {
+    let url = `${location.origin}${router.options.history.base}/version.json`;
+    if (__APP_UPLOAD__) {
+        url = `${__APP_UPLOAD_PATH__}${__APP_UPLOAD_PATH__.endsWith("/") ? "" : "/"}version.json`;
+    }
     return request({
-        url: `${location.origin}${router.options.history.base}/version.json`,
+        url,
         notify: false
     });
 }

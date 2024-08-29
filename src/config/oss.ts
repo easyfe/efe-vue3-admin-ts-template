@@ -1,8 +1,5 @@
 import { generateVersion, AliConfig } from "@easyfe/vite-plugin-upload";
 
-//是否允许上传到CDN
-export const enableUpload = false;
-
 //获取oss配置
 export function getOssConfig(envMap: Record<string, any>) {
     //上传配置

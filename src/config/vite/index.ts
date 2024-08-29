@@ -46,7 +46,7 @@ export function createVitePlugins(params: {
         })
     ];
     // 上传oss
-    if (params.envMap.VITE_APP_MODE !== "development" && params?.uploadOption) {
+    if (params.envMap.VITE_APP_MODE !== "development" && params.envMap.VITE_APP_ENABLE_OSS === "true") {
         vitePlugins.push(AliUploadPlugin(params.uploadOption));
     }
     // 代码压缩 .gzip之类

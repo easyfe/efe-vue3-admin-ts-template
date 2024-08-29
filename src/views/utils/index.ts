@@ -1,8 +1,10 @@
 import storage from "@/utils/tools/storage";
-import { Modal } from "@arco-design/web-vue";
+import { Message, Modal } from "@arco-design/web-vue";
 import router, { initRoute } from "@/packages/vue-router";
 import global from "@/config/pinia/global";
 import CryptoJS from "crypto-js";
+import { getVersion } from "@/config/apis/common";
+import envHelper from "@/utils/helper/env";
 
 export const TablePageConfig = {
     pageKey: "current",
@@ -301,3 +303,21 @@ export function splitSelection(
 
     return { fullySelected, partiallySelected };
 }
+
+// 版本监控
+export const versionCheck = async () => {
+    if (envHelper.dev()) {
+        return;
+    }
+    const response = await getVersion();
+    if (String(__APP_VERSION__) < String(response.version)) {
+        console.log("APP_VERSION", String(__APP_VERSION__), "====", String(response.version));
+        Message.info({
+            content: "发现新内容，自动更新中...",
+            duration: 1500,
+            onClose: () => {
+                window.location.reload();
+            }
+        });
+    }
+};
