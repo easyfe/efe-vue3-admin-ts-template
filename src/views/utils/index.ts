@@ -22,7 +22,7 @@ export function clearLoingInfo() {
 
 let authModal = false;
 export function errorLogout() {
-    storage.setToken("");
+    clearLoingInfo();
     global().initSuccess = false;
     if (!authModal) {
         authModal = true;
