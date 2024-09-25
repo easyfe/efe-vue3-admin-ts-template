@@ -11,6 +11,7 @@ import { initGlobal, versionCheck } from "@/views/utils";
 import { getVersion } from "@/config/apis/common";
 import { Message } from "@arco-design/web-vue";
 import { baseRouter } from "./base";
+import { cloneDeep } from "lodash-es";
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
@@ -67,7 +68,7 @@ const formatMenuShow = (routes: RouteConfig[]) => {
 const initRoute = (): void => {
     piniaRoutes().routes = [];
     const staticRoutes = routes as RouteConfig[];
-    const menuRoutes = formatMenuShow(staticRoutes);
+    const menuRoutes = formatMenuShow(cloneDeep(staticRoutes));
     const loop = (data: RouteConfig[]) => {
         data.forEach((item) => {
             if (item.children?.length) {
