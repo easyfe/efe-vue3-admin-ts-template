@@ -7,7 +7,7 @@
     "eslint.run": "onSave",
     "eslint.validate": ["javascript", "javascriptreact", "vue", "typescript", "typescriptreact"],
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": "explicit"
     },
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
