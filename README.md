@@ -196,6 +196,10 @@ export function getAgentDataField(brandId: string, id: string): Promise<_AgentDa
 └─types	                                #类型定义文件夹
 ```
 
+## TIPS
+
+如果 arco.design template 类型提示丢失，使用 2.0.28 版本 vue-official
+
 ## 赞助商
 
 -   感谢 [JetBrains](https://www.jetbrains.com/?from=easyfe/efe-vue3-admin-ts-template) 对本项目的支持！
