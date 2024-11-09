@@ -1,8 +1,8 @@
 <template>
     <div class="map-container">
         <map-container
-            map-key="6cb85da518029607d421917b7ddeb94a"
             ref="myMap"
+            map-key="6cb85da518029607d421917b7ddeb94a"
             :map-type="mapType"
             :height="mapHeight"
             :options="{ zoom: 5.37, center: [119.728933, 32.333552] }"
@@ -94,7 +94,7 @@
                 <div>告警运行</div>
             </div>
         </div>
-        <div class="map-dev" v-if="envHelper.dev()">
+        <div v-if="envHelper.dev()" class="map-dev">
             <a-button type="primary" @click="getCenterAndZoom">获取中心点和定位</a-button>
         </div>
     </div>
