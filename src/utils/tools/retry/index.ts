@@ -3,21 +3,24 @@ type RetryData = {
     params?: any;
     limit?: number;
     delay?: number;
-    immediate?: boolean; // 新增的参数
+    immediate?: boolean;
+    onReject?: (error: any) => Promise<void>; // 新增的参数
 };
 
 export default function (data: RetryData): Promise<any> {
     !data.limit && (data.limit = 3);
     !data.delay && (data.delay = 50);
-    if (data.immediate === undefined) {
-        data.immediate = true;
-    }
+    if (data.immediate === undefined) data.immediate = true;
+
     return new Promise((resolve, reject) => {
         const attempt = async (): Promise<any> => {
             try {
                 const res = await data.fn(data.params);
                 resolve(res);
             } catch (e) {
+                if (data.onReject) {
+                    await data.onReject(e); // 调用 onReject 回调
+                }
                 if (data.limit) {
                     data.limit--;
                 }
