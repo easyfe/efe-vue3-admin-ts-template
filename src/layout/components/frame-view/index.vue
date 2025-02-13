@@ -1,6 +1,6 @@
 <template>
     <div :class="['frame-view', $slots.bottom ? 'frame-view-pdm' : '', props.fixedHeight ? 'frame-fixed-height' : '']">
-        <div :class="['frame-view-content', props.contentClass]">
+        <div ref="myFrameContent" :class="['frame-view-content', props.contentClass]">
             <a-page-header v-if="pageHeader" v-bind="pageHeader" @back="routerHelper.back()" />
             <slot></slot>
         </div>
@@ -14,6 +14,10 @@
 import global from "@/config/pinia/global";
 import routerHelper from "@/utils/helper/router";
 import { PageHeader } from "@arco-design/web-vue";
+
+const route = useRoute();
+
+const myFrameContent = ref();
 
 const layoutModeHeight = computed(() => {
     const mode = global().app.layout;
@@ -41,6 +45,18 @@ const bottomStyle = computed(() => {
     return {
         width: global().collapsed ? "calc(100% - 48px)" : "calc(100% - 200px)"
     };
+});
+
+onActivated(() => {
+    nextTick(() => {
+        let $content = myFrameContent.value;
+        if (route.meta?.scrollId) {
+            $content = document.querySelector(`${route.meta?.scrollId}`);
+        }
+        if ($content && route.name) {
+            $content.scrollTop = global().scrollTop[route.name.toString()] || 0;
+        }
+    });
 });
 </script>
 <style lang="scss" scoped>

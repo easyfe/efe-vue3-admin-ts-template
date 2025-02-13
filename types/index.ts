@@ -14,6 +14,8 @@ interface RouteMetaAll extends RouteMeta {
     cache?: boolean;
     parentName?: string;
     permission?: () => boolean;
+    click?: () => void;
+    scrollId?: string;
 }
 
 export interface RouteConfig {

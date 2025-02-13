@@ -69,7 +69,9 @@ function checkVisible() {
 }
 
 function onJump() {
-    if (props.route.redirect) {
+    if (props.route.meta?.click) {
+        props.route.meta.click();
+    } else if (props.route.redirect) {
         router.push(props.route.redirect);
     } else {
         router.push(props.route);

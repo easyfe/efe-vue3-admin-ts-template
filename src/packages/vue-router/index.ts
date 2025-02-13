@@ -183,6 +183,19 @@ router.beforeEach(async (to: RouteConfig, from, next) => {
             document.getElementById("index-loading")?.setAttribute("style", "display:auto");
         }
     }, 500);
+    if (from.meta?.keepAliveName) {
+        let domV = "";
+        if (from.meta?.scrollId) {
+            domV = `${from.meta?.scrollId}`;
+        } else {
+            domV = `.frame-view-content`;
+        }
+        const $content = document.querySelector(domV);
+        const scrollTop = $content?.scrollTop || 0;
+        if (from.name) {
+            global().SET_SCROLL({ name: from.name.toString(), value: scrollTop });
+        }
+    }
     //正常跳转
     next();
 });
