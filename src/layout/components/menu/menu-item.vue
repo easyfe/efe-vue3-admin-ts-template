@@ -62,6 +62,9 @@ function checkVisible() {
     if (props.route.meta?.permission?.() === false) {
         return false;
     }
+    if (props.route.children && props.route.children.length === 0) {
+        return false;
+    }
     return true;
 }
 
